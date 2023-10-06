@@ -18,7 +18,6 @@ public class homePageSteps extends BaseClass {
 	public void user_is_on_homepage_of_DS_Algo() {
 		homePage = new HomePage(Helper.getDriver());
 		Helper.openPage(configFileReader.getHomePageUrl());
-//		Assert.assertTrue(homePage.isDropdownDisplayed());
 	}
 
 	@When("^User click on \"([^\"]*)\" for the data structure option without login$")
@@ -32,21 +31,36 @@ public class homePageSteps extends BaseClass {
 		Assert.assertEquals(homePage.verifyErrorMessage(), errorMsg);
 	}
 
-	@When("^User click on \"([a-zA-Z]{1,})\" from drop down menu without login$")
+	@When("^User click on \"([^\"]*)\" from drop down menu without login$")
 	public void user_click_on_from_drop_down_menu_without_login(String arrayLink) {
 		homePage.selectDropdownOption();
 	}
-	
-	@When("^User click on \"([a-zA-Z]{1,})\" button$")
+
+	@When("^User click on register \"([^\"]*)\" button$")
 	public void user_click_on_button(String register) {
-		homePage.clickRegisterBtn(register);
+		String linkName = homePage.clickRegisterBtn();
+		assertEquals(linkName, register);
+
 	}
-	
-	@Then("User should redirected to Register page")
-	public void user_should_redirected_to_page() {
-		String url = homePage.verifyRegisterPage();
-		assertEquals(url,configFileReader.getRegisterPageUrl());
+
+	@When("^User click on login \"([^\"]*)\" button$")
+	public void user_click_on_login_button(String login) {
+		String linkName = homePage.clickSignInBtn();
+		assertEquals(linkName, "Sign in");
+
 	}
-	
+
+	@Then("User should redirected to Register \"([^\"]*)\" page$")
+	public void user_should_redirected_to_Register_page(String register) {
+		String url = homePage.verifyPage();
+		assertEquals(url, configFileReader.getRegisterPageUrl());
+		assertEquals(url, configFileReader.getRegisterPageUrl());
+	}
+
+	@Then("User should redirected to login \"([^\"]*)\" page$")
+	public void user_should_redirected_to_login_page(String login) {
+		String url = homePage.verifyPage();
+		assertEquals(url, configFileReader.getLoginPageUrl());
+	}
 
 }

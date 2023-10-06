@@ -25,6 +25,7 @@ public class HomePage extends BaseClass {
 	By navDropDwn = By.xpath("//div[@class='nav-item dropdown']/a");
 	By arrayLink = By.xpath("//div[@class='dropdown-menu show']/a[1]");
 	By registerLink = By.xpath("//div[@class ='navbar-nav']/ul/a[contains(text(),'Register')]");
+	By signInLink = By.xpath("//div[@class ='navbar-nav']/ul/a[contains(text(),'Sign in')]");
 
 	public boolean isDropdownDisplayed() {
 		return driver.findElement(dataStructureDropDwn).isDisplayed();
@@ -45,17 +46,21 @@ public class HomePage extends BaseClass {
 		return driver.findElement(errorMessage).getText();
 	}
 
-	public void clickRegisterBtn(String register) {
-		String registerBtn = driver.findElement(registerLink).getText();
-		assertEquals(registerBtn, register);
+	public String clickRegisterBtn() {
 		driver.findElement(registerLink).click();
+		return driver.findElement(registerLink).getText();
 
 	}
 
-	public String verifyRegisterPage() {
+	public String clickSignInBtn() {
+		driver.findElement(signInLink).click();
+		return driver.findElement(signInLink).getText();
+
+	}
+
+	public String verifyPage() {
 		return driver.getCurrentUrl();
-//		public String getHomePageTitle() {
-//			return driver.findElement(homePageTitle).getText();
 //		}
 	}
+
 }
