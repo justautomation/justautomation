@@ -93,5 +93,17 @@ public class ConfigFileReader {
 		throw new RuntimeException("browser not specified in the config.properties file.");
 
 		}
+	
+	public String getRegisterPageUrl() {
+		String applicationurl= properties.getProperty("url.registerpage");
+
+		if(applicationurl != null)
+
+		return applicationurl;
+
+		else
+
+		throw new RuntimeException("Application url not specified in the config.properties file.");
+	}
 
 }

@@ -11,7 +11,7 @@ import fileReader.ConfigFileReader;
 
 public class landingPageSteps extends BaseClass {
 
-	ConfigFileReader configFileReader;
+	ConfigFileReader configFileReader = new ConfigFileReader();;
 	String landingPageTitle = "NumpyNinja";
 
 	@Given("User Launches Chrome Browser")
@@ -19,9 +19,9 @@ public class landingPageSteps extends BaseClass {
 		landingPage = new LandingPage(Helper.getDriver());
 	}
 
-	@When("User opens DS Algo  portal link {string}")
-	public void user_opens_DS_Algo_portal_link(String url) {
-		Helper.openPage(url);
+	@When("User opens DS Algo portal link")
+	public void user_opens_DS_Algo_portal_link() {
+		Helper.openPage(configFileReader.getApplicationUrl());
 	}
 
 	@Then("User clicks Get Started button")
@@ -29,6 +29,7 @@ public class landingPageSteps extends BaseClass {
 		if (landingPage.isButtonDisplayed()) {
 			landingPage.ClickGetStartedBtn();
 		}
+		
 	}
 
 	@And("User lands on Home page")
