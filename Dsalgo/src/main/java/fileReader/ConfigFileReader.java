@@ -114,4 +114,28 @@ public class ConfigFileReader {
 			throw new RuntimeException("Application url not specified in the config.properties file.");
 	}
 
+	public String getDSPageUrl() {
+		String applicationurl = properties.getProperty("url.dspage");
+
+		if (applicationurl != null)
+
+			return applicationurl;
+
+		else
+
+			throw new RuntimeException("Application url not specified in the config.properties file.");
+	}
+
+	public String getTextEditorPageUrl() {
+		String applicationurl = properties.getProperty("url.texteditorpage");
+
+		if (applicationurl != null)
+
+			return applicationurl;
+
+		else
+
+			throw new RuntimeException("Application url not specified in the config.properties file.");
+	}
+
 }
