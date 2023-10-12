@@ -32,25 +32,21 @@ public class registerPage extends BaseClass {
 
 	public String verifyUsernameValidationMessage() {
 		String message = driver.findElement(username).getAttribute("validationMessage");
-		System.out.println("validation message is: " + message);
 		return message;
 	}
 
 	public String verifyPasswordValidationMessage() {
 		String message = driver.findElement(password).getAttribute("validationMessage");
-		System.out.println("validation message is: " + message);
 		return message;
 	}
 
 	public String verifyConfirmPasswordValidationMessage() {
 		String message = driver.findElement(confirmPassword).getAttribute("validationMessage");
-		System.out.println("validation message is: " + message);
 		return message;
 	}
 	
 	public String verifyMismatchValidationMessage() {
 		String message = driver.findElement(mismatchPasswdAlert).getText();
-		System.out.println("validation message is: " + message);
 		return message;
 	}
 	

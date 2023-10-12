@@ -54,7 +54,6 @@ public class homePageSteps extends BaseClass {
 	public void user_should_redirected_to_Register_page(String register) {
 		String url = homePage.verifyPage();
 		assertEquals(url, configFileReader.getRegisterPageUrl());
-		assertEquals(url, configFileReader.getRegisterPageUrl());
 	}
 
 	@Then("User should redirected to login \"([^\"]*)\" page$")

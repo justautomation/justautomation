@@ -47,6 +47,27 @@ public class Helper {
          }
          Helper = null;
      }
+     
+     public static boolean waitForElementToBeInteractable(WebElement element) {
+    	 try {
+    	 WebElement ele = new WebDriverWait(driver, Duration.ofSeconds(10)).
+					until(ExpectedConditions.elementToBeClickable(element));
+    	 try {
+				ele.click();
+				
+				return true;
+				}
+				catch(Exception e) {
+					//JavascriptExecutor(driver) = 
+				}     
+    	 }
+  		catch(Exception e) {
+  			e.printStackTrace();
+  			
+  		}
+  		return false;
+     }
+    
      public static boolean webClick(WebElement element) {
  		
  		try {

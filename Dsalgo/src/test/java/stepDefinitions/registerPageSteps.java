@@ -16,6 +16,7 @@ import Utilities.ExcelReader;
 import Utilities.Helper;
 import fileReader.ConfigFileReader;
 import io.cucumber.core.internal.com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -30,6 +31,7 @@ public class registerPageSteps extends BaseClass {
 	String username;
 	String password;
 	String confirmPassword;
+	String uniqueUsrname;
 
 	@Given("New user is on Register page")
 	public void new_user_is_on_register_page() {
@@ -40,9 +42,9 @@ public class registerPageSteps extends BaseClass {
 		demoLogger.info("User is on Register Page");
 	}
 
-	@When("User click on register button")
+	@And("User click on register button")
 	public void user_click_on_register_button() {
-		homePage.clickRegisterBtn();
+		regPage.clickRegisterBtn();
 	}
 
 	@Then("User should land on Register page")
@@ -52,7 +54,7 @@ public class registerPageSteps extends BaseClass {
 
 	}
 
-	@When("^User click on register button with username \"([^\"]*)\" and password (\\d+) as blank$")
+	@When("^User enters username \"([^\"]*)\" and password (\\d+) both as blank$")
 	public void user_click_on_register_button_with_username_and_password_as_blank(String sheetname, Integer rownumber)
 			throws InvalidFormatException, IOException {
 
@@ -92,8 +94,24 @@ public class registerPageSteps extends BaseClass {
 			regPage.login(username, password);
 		}
 
-		regPage.clickRegisterBtn();
+	}
 
+	@Then("User should get error message for blank field")
+	public void user_should_get_error_message_for_blank_field() {
+		if (username == null) {
+			assertTrue(message.contains(regPage.verifyUsernameValidationMessage()));
+		} else if (password == null) {
+			assertTrue(message.contains(regPage.verifyPasswordValidationMessage()));
+
+		} else if (username != null && password != null && confirmPassword == null) {
+			assertEquals(message, regPage.verifyConfirmPasswordValidationMessage());
+		}
+
+	}
+
+	@Then("User should get mismatch error message")
+	public void user_should_get_mismatch_error_message() {
+		assertEquals(message.trim(), regPage.verifyMismatchValidationMessage().trim());
 	}
 
 	@When("^User enter username \"([^\"]*)\" and password (\\d+) but confirm password as blank$")
@@ -129,18 +147,13 @@ public class registerPageSteps extends BaseClass {
 
 		if (username == null) {
 			regPage.loginPass(password);
-			regPage.clickRegisterBtn();
-			assertTrue(message.contains(regPage.verifyUsernameValidationMessage()));
 
 		} else if (password == null) {
 			regPage.loginUsrname(username);
-			regPage.clickRegisterBtn();
-			assertTrue(message.contains(regPage.verifyPasswordValidationMessage()));
 
 		} else if (username != null && password != null && confirmPassword == null) {
 			regPage.login(username, password);
-			regPage.clickRegisterBtn();
-			assertEquals(message, regPage.verifyConfirmPasswordValidationMessage());
+
 		}
 	}
 
@@ -171,10 +184,6 @@ public class registerPageSteps extends BaseClass {
 		demoLogger.info("User Enter username as \" " + username + " \"and Password as \" " + password + "\" ");
 
 		regPage.loginUsrPass(username, password, confirmPassword);
-
-		regPage.clickRegisterBtn();
-
-		assertEquals(message.trim(), regPage.verifyMismatchValidationMessage().trim());
 
 	}
 
@@ -208,18 +217,12 @@ public class registerPageSteps extends BaseClass {
 		if (username == null) {
 			regPage.loginPass(password);
 			regPage.clickRegisterBtn();
-			assertTrue(message.contains(regPage.verifyUsernameValidationMessage()));
 
 		} else if (password == null) {
 			regPage.loginUsrname(username);
-			regPage.clickRegisterBtn();
-			assertTrue(message.contains(regPage.verifyPasswordValidationMessage()));
 
 		} else if (username != null && password != null) {
 			regPage.login(username, password);
-			regPage.clickRegisterBtn();
-			assertTrue(message.contains(regPage.verifyUsernameValidationMessage()));
-			assertTrue(message.contains(regPage.verifyPasswordValidationMessage()));
 
 		}
 
@@ -257,9 +260,6 @@ public class registerPageSteps extends BaseClass {
 		regPage.loginUsrPass(username, password.substring(1, password.length() - 1),
 				password.substring(1, password.length() - 1));
 
-		regPage.clickRegisterBtn();
-		assertEquals(message, regPage.verifyMismatchValidationMessage());
-
 	}
 
 	@When("^User enter username \"([^\"]*)\" as blank and password (\\d+) with valid value$")
@@ -292,9 +292,6 @@ public class registerPageSteps extends BaseClass {
 		demoLogger.info("User Enter username as \" " + username + " \"and Password as \" " + password + "\" ");
 
 		regPage.loginPassConfirmPass(password, confirmPassword);
-
-		regPage.clickRegisterBtn();
-		assertEquals(message, regPage.verifyUsernameValidationMessage());
 
 	}
 
@@ -329,9 +326,6 @@ public class registerPageSteps extends BaseClass {
 
 		regPage.loginUsrPass(username, password, confirmPassword);
 
-		regPage.clickRegisterBtn();
-		assertEquals(message, regPage.verifyMismatchValidationMessage());
-
 	}
 
 	@When("^User enter valid username \"([^\"]*)\" and password (\\d+) and confirm password$")
@@ -359,16 +353,14 @@ public class registerPageSteps extends BaseClass {
 
 		demoLogger.info("User Enter username as \" " + username + " \"and Password as \" " + password + "\" ");
 
-		String uniqueUsrname = "NumpyNinjaUser" + Integer.toString(((new Random().nextInt(10)) + 1));
+		uniqueUsrname = "NumpyNinjaUser" + Integer.toString(((new Random().nextInt(10)) + 1));
 		regPage.loginUsrPass(uniqueUsrname, password.trim(), confirmPassword.trim());
 
-		regPage.clickRegisterBtn();
+	}
 
-		System.out.println("excel file message: " + message + " " + uniqueUsrname);
-
-		System.out.println("logged in msg: " + regPage.verifyLoggedInMsg());
+	@Then("User should be logged in successfully")
+	public void user_should_be_logged_in_successfully() {
 		assertEquals(message + uniqueUsrname, regPage.verifyLoggedInMsg());
-
 	}
 
 }

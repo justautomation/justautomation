@@ -33,7 +33,7 @@ public class signInPage extends BaseClass {
 	}
 	
 	public String getErrorMsg() {
-		return driver.findElement(errorMsg).getText();
+		return driver.findElement(passwdField).getAttribute("validationMessage");
 	}
 	
 	public String getLoggedInMsg() {
