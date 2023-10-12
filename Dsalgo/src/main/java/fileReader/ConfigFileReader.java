@@ -137,5 +137,18 @@ public class ConfigFileReader {
 
 			throw new RuntimeException("Application url not specified in the config.properties file.");
 	}
+	
+	public String getpracticeQuesPageUrl() {
+		String applicationurl = properties.getProperty("url.practicequespage");
+
+		if (applicationurl != null)
+
+			return applicationurl;
+
+		else
+
+			throw new RuntimeException("Application url not specified in the config.properties file.");
+	}
+	
 
 }
