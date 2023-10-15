@@ -12,6 +12,8 @@ import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.github.javafaker.Faker;
+
 import Utilities.ExcelReader;
 import Utilities.Helper;
 import fileReader.ConfigFileReader;
@@ -352,8 +354,10 @@ public class registerPageSteps extends BaseClass {
 		message = testdata.get(rownumber).get("expectedmessage");
 
 		demoLogger.info("User Enter username as \" " + username + " \"and Password as \" " + password + "\" ");
-
-		uniqueUsrname = "NumpyNinjaUser" + Integer.toString(((new Random().nextInt(10)) + 1));
+		
+		/* Generate unique usernames to register */
+		Faker faker = new Faker();
+		uniqueUsrname = faker.name().firstName()+faker.name().lastName();
 		regPage.loginUsrPass(uniqueUsrname, password.trim(), confirmPassword.trim());
 
 	}
