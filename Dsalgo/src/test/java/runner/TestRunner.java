@@ -10,7 +10,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(plugin = { "pretty", "html:target/gunjit.html", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm" }, // reporting
 																														// purpose
 		monochrome = true, // console output color
-//		tags = "@dell", // tags from feature file
+//		tags = "@queue", // tags from feature file
 		features = { "src/test/resources/features" }, // location of feature files - folder name
 		glue = "stepDefinitions") // location of step definition files - package name
 
