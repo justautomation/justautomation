@@ -186,7 +186,51 @@ public class ConfigFileReader {
 			throw new RuntimeException("Application url not specified in the config.properties file.");
 	}
 	
-	
-	
+	public String getStackPageUrl() {
+		String applicationurl = properties.getProperty("url.stackpage");
 
+		if (applicationurl != null)
+
+			return applicationurl;
+
+		else
+
+			throw new RuntimeException("Application url not specified in the config.properties file.");
+	}
+	
+	public String getStackPracticeQuesPageUrl() {
+		String applicationurl = properties.getProperty("url.stackpracticequespage");
+
+		if (applicationurl != null)
+
+			return applicationurl;
+
+		else
+
+			throw new RuntimeException("Application url not specified in the config.properties file.");
+	}
+	
+	public String getQueuePageUrl() {
+		String applicationurl = properties.getProperty("url.queuePage");
+
+		if (applicationurl != null)
+
+			return applicationurl;
+
+		else
+
+			throw new RuntimeException("Application url not specified in the config.properties file.");
+	}
+	
+	public String getQueuePracticeQuesPageUrl() {
+		String applicationurl = properties.getProperty("url.queuepracticequespage");
+
+		if (applicationurl != null)
+
+			return applicationurl;
+
+		else
+
+			throw new RuntimeException("Application url not specified in the config.properties file.");
+	}
 }

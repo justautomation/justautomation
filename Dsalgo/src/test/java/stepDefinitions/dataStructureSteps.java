@@ -54,6 +54,7 @@ public class dataStructureSteps extends BaseClass {
 
 	@Then("User should be redirected to try Text Editor page")
 	public void user_should_be_redirected_to_try_Text_Editor_page() {
+		dsPage = new dataStructure(Helper.getDriver());
 		assertEquals(dsPage.verifyTryEditorPage(), configFileReader.getTextEditorPageUrl());
 	}
 
@@ -61,6 +62,7 @@ public class dataStructureSteps extends BaseClass {
 	public void user_enter_invalid_python_code_in_tryEditor_and_click_run_button(String sheetname, Integer rownumber)
 			throws InvalidFormatException, IOException {
 
+		dsPage = new dataStructure(Helper.getDriver());
 		ExcelReader reader = new ExcelReader();
 
 		List<Map<String, String>> testdata = null;
@@ -85,14 +87,7 @@ public class dataStructureSteps extends BaseClass {
 
 		demoLogger.info("User Enter username as \" " + username + " \"and Password as \" " + password + "\" ");
 
-		dsPage.enterPythonCode(pythonCode, result);
-
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		dsPage.enterPythonCode(pythonCode);
 
 	}
 
@@ -131,14 +126,8 @@ public class dataStructureSteps extends BaseClass {
 
 		demoLogger.info("User Enter username as \" " + username + " \"and Password as \" " + password + "\" ");
 
-		dsPage.enterPythonCode(pythonCode, result);
-
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		dsPage = new dataStructure(Helper.getDriver());
+		dsPage.enterPythonCode(pythonCode);
 
 	}
 

@@ -63,6 +63,7 @@ public class listPageSteps extends BaseClass {
 
 	@Then("User click practice questions link")
 	public void user_click_practice_questions_link() {
+		listPg = new listPage(Helper.getDriver());
 		listPg.clickPracticeQues();
 	}
 
