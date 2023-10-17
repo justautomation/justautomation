@@ -233,4 +233,28 @@ public class ConfigFileReader {
 
 			throw new RuntimeException("Application url not specified in the config.properties file.");
 	}
+	
+	public String getTreePageUrl() {
+		String applicationurl = properties.getProperty("url.treePage");
+
+		if (applicationurl != null)
+
+			return applicationurl;
+
+		else
+
+			throw new RuntimeException("Application url not specified in the config.properties file.");
+	}
+	
+	public String getTreePracticeQuesPageUrl() {
+		String applicationurl = properties.getProperty("url.treepracticequespage");
+
+		if (applicationurl != null)
+
+			return applicationurl;
+
+		else
+
+			throw new RuntimeException("Application url not specified in the config.properties file.");
+	}
 }
