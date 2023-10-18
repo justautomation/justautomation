@@ -433,3 +433,19 @@ Feature: User navigate to Tree data structure Page and try different operations 
 	Examples: 
 		| Sheetname | RowNumber |
 		| Sheet1    |         3 |
+		
+		
+@tree
+Scenario Outline: User navigate to graph data structure page and and trying to sign out
+    Given The user is on signin page
+    When The user enter sheet "<Sheetname>" and <RowNumber> 
+		And  click login button 
+		When User click Get Started button for the tree card 
+		Then User should redirected to tree page
+		When User click signout button
+		Then User is redirected to home page
+		
+Examples: 
+		| Sheetname | RowNumber |
+		| Sheet1    |         4 |
+		
