@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class ConfigFileReader {
 
-	private Properties properties;
+	private static Properties properties;
 
 	private final String configFilePath = "configs//config.properties";
 
@@ -47,6 +47,26 @@ public class ConfigFileReader {
 		}
 
 	}
+	
+
+	public  String getGlobalValue() {
+		
+//		properties = new Properties();
+		
+		String currentBrowser = properties.getProperty("browser");
+
+		if (currentBrowser != null)
+
+			return currentBrowser;
+
+		else
+
+			throw new RuntimeException("Browser not specified in the config.properties file.");
+
+	}
+
+	
+
 
 	public String getApplicationUrl() {
 
@@ -248,6 +268,30 @@ public class ConfigFileReader {
 	
 	public String getTreePracticeQuesPageUrl() {
 		String applicationurl = properties.getProperty("url.treepracticequespage");
+
+		if (applicationurl != null)
+
+			return applicationurl;
+
+		else
+
+			throw new RuntimeException("Application url not specified in the config.properties file.");
+	}
+	
+	public String getGraphPageUrl() {
+		String applicationurl = properties.getProperty("url.graphPage");
+
+		if (applicationurl != null)
+
+			return applicationurl;
+
+		else
+
+			throw new RuntimeException("Application url not specified in the config.properties file.");
+	}
+	
+	public String getGraphPracticeQuesPageUrl() {
+		String applicationurl = properties.getProperty("url.graphpracticequespage");
 
 		if (applicationurl != null)
 
