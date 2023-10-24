@@ -91,9 +91,7 @@ public class dataStructure extends BaseClass {
 		Helper.webClick(driver.findElement(practiceQues));
 	}
 
-	@SuppressWarnings("deprecation")
 	public String verifyPracticeQuesPage() {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		return driver.getCurrentUrl();
 	}
 }
