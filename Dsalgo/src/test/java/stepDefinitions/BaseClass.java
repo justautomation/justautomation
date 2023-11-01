@@ -49,7 +49,7 @@ public class BaseClass {
 			WebDriverManager.edgedriver().clearDriverCache().setup();
 			WebDriverManager.edgedriver().clearResolutionCache().setup();
 			driver = new EdgeDriver();
-		} else if (browser.equalsIgnoreCase("fireFox")) {
+		} else if (browser.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().clearDriverCache().setup();
 			WebDriverManager.firefoxdriver().clearResolutionCache().setup();
 			driver = new FirefoxDriver();
