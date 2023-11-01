@@ -43,7 +43,6 @@ public class Helper extends BaseClass {
 
 	public static void tearDown() {
 		if (driver != null) {
-			driver.close();
 			driver.quit();
 		}
 		Helper = null;
