@@ -46,16 +46,12 @@ public class BaseClass {
 		if (browser.equalsIgnoreCase("chrome")) {
 			driver = new ChromeDriver(options);
 		} else if (browser.equalsIgnoreCase("edge")) {
-			LoggerLoad.info("Testing on Edge");
-			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
 		} else if (browser.equalsIgnoreCase("fireFox")) {
 			LoggerLoad.info("Testing on firefox");
-			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		} else if (browser.equalsIgnoreCase("safari")) {
 			LoggerLoad.info("Testing on safari");
-			WebDriverManager.safaridriver().setup();
 			driver = new SafariDriver();
 		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
