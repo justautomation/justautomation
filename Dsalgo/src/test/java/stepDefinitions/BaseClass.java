@@ -9,7 +9,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import Utilities.LoggerLoad;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.HomePage;
 import pageObjects.LandingPage;
 import pageObjects.arrayPage;
