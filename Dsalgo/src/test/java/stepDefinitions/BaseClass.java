@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import Utilities.LoggerLoad;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.HomePage;
 import pageObjects.LandingPage;
 import pageObjects.arrayPage;
@@ -43,6 +44,9 @@ public class BaseClass {
 		options.addArguments("--remote-allow-origins=*");
 
 		if (browser.equalsIgnoreCase("chrome")) {
+			WebDriverManager.chromedriver().clearDriverCache().setup();
+			WebDriverManager.chromedriver().clearResolutionCache().setup();
+//			driver = new ChromeDriver();
 			driver = new ChromeDriver(options);
 		} else if (browser.equalsIgnoreCase("edge")) {
 			driver = new EdgeDriver();
