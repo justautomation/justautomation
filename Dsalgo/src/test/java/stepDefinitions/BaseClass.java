@@ -7,8 +7,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
-
-import Utilities.LoggerLoad;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.HomePage;
 import pageObjects.LandingPage;
@@ -46,15 +44,18 @@ public class BaseClass {
 		if (browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().clearDriverCache().setup();
 			WebDriverManager.chromedriver().clearResolutionCache().setup();
-//			driver = new ChromeDriver();
 			driver = new ChromeDriver(options);
 		} else if (browser.equalsIgnoreCase("edge")) {
+			WebDriverManager.edgedriver().clearDriverCache().setup();
+			WebDriverManager.edgedriver().clearResolutionCache().setup();
 			driver = new EdgeDriver();
 		} else if (browser.equalsIgnoreCase("fireFox")) {
-			LoggerLoad.info("Testing on firefox");
+			WebDriverManager.firefoxdriver().clearDriverCache().setup();
+			WebDriverManager.firefoxdriver().clearResolutionCache().setup();
 			driver = new FirefoxDriver();
 		} else if (browser.equalsIgnoreCase("safari")) {
-			LoggerLoad.info("Testing on safari");
+			WebDriverManager.safaridriver().clearDriverCache().setup();
+			WebDriverManager.safaridriver().clearResolutionCache().setup();
 			driver = new SafariDriver();
 		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
