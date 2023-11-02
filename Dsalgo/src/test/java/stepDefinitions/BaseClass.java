@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -41,6 +42,11 @@ public class BaseClass {
 		options.setImplicitWaitTimeout(Duration.ofSeconds(20));
 		options.addArguments("--remote-allow-origins=*");
 
+		EdgeOptions eoptions = new EdgeOptions();
+		eoptions.setImplicitWaitTimeout(Duration.ofSeconds(20));
+		eoptions.addArguments("--no-sandbox"); // Bypass OS security model, MUST BE THE VERY FIRST OPTION
+		eoptions.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+
 		if (browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().clearDriverCache().setup();
 			WebDriverManager.chromedriver().clearResolutionCache().setup();
@@ -48,7 +54,7 @@ public class BaseClass {
 		} else if (browser.equalsIgnoreCase("edge")) {
 			WebDriverManager.edgedriver().clearDriverCache().setup();
 			WebDriverManager.edgedriver().clearResolutionCache().setup();
-			driver = new EdgeDriver();
+			driver = new EdgeDriver(eoptions);
 		} else if (browser.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().clearDriverCache().setup();
 			WebDriverManager.firefoxdriver().clearResolutionCache().setup();
@@ -62,7 +68,5 @@ public class BaseClass {
 		driver.manage().window().maximize();
 		return driver;
 	}
-
-	
 
 }
