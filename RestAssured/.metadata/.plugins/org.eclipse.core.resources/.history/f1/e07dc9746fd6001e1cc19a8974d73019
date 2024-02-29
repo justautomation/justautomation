@@ -1,0 +1,18 @@
+package stepDefinitions;
+
+import io.cucumber.java.Scenario;
+import io.cucumber.java.en.*;
+import io.restassured.response.Response;
+
+public class restApiGET {
+	
+	private final String BASE_URL = "https://userapi-8877aadaae71.herokuapp.com/uap";
+	private Response response;
+	private Scenario scenario;
+	
+	@Given("User makes GET Request to <endpoint>")
+	public void getCallToUrl() {
+		
+	}
+
+}

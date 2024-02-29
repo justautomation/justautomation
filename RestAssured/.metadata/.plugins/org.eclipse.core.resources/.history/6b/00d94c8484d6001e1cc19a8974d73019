@@ -1,0 +1,17 @@
+package utils;
+
+import io.restassured.RestAssured;
+import io.restassured.specification.RequestSpecification;
+
+public class restAPIHelper {
+	
+	private final static String BASE_URL = "https://userapi-8877aadaae71.herokuapp.com/uap";
+	
+	public static RequestSpecification getBasicAuth() {
+		return RestAssured.given().auth().basic("Numpy@gmail.com", "userAPI");
+	}
+
+	public static String getBASE_URL() {
+		return BASE_URL;
+	}
+}

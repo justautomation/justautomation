@@ -1,0 +1,16 @@
+[
+	{
+		"user_first_name": "Ebu",
+		"user_last_name": "Cha",
+		"user_contact_number": 9977665543,
+		"user_email_id": "ebucha345@gmail.com",
+		"userAddress": {
+		 "plotNumber":"pl-101",
+         "street":"hylcrest",
+         "state":"Michigan",
+         "country":"USA",
+         "zipCode":34567
+						}
+	}
+
+]

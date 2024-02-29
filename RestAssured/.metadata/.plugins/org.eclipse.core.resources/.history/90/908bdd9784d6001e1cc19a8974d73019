@@ -1,0 +1,48 @@
+package stepDefinitions;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import org.testng.Assert;
+
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import io.cucumber.java.en.*;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import utils.restAPIHelper;
+
+public class restApiGET {
+
+	private Response response;
+	private Scenario scenario;
+
+	@Before
+	public void before(Scenario scenario) {
+		this.scenario = scenario;
+	}
+
+	@Given("^Unauthorized user makes GET request to ([^\"]*)$")
+	public void makeGetCallToUrl(String string) throws URISyntaxException {
+		RestAssured.baseURI = restAPIHelper.getBASE_URL();
+		RequestSpecification requestSpecification = RestAssured.given();
+		response = requestSpecification.contentType(ContentType.JSON).when().get(new URI(string));
+	}
+
+	@Given("^User makes GET request to ([^\"]*)$")
+	public void getCallToUrl(String string) throws URISyntaxException {
+		RestAssured.baseURI = restAPIHelper.getBASE_URL();
+		RequestSpecification requestSpecification = RestAssured.given();
+		response = requestSpecification.spec(restAPIHelper.getBasicAuth()).contentType(ContentType.JSON).when()
+				.get(new URI(string));
+	}
+
+	@Then("Response is (\\d+)$")
+	public void reponseIsStatusCode(int statusCode) {
+		int actualReponseCode = response.then().extract().statusCode();
+		Assert.assertEquals(statusCode, actualReponseCode);
+	}
+
+}

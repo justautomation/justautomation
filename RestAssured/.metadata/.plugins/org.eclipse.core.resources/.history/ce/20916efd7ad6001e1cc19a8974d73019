@@ -1,0 +1,39 @@
+package stepDefinitions;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import org.testng.Assert;
+
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import io.cucumber.java.en.*;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class restApiGET {
+	
+	private final String BASE_URL = "https://userapi-8877aadaae71.herokuapp.com/uap";
+	private Response response;
+	private Scenario scenario;
+	
+	@Before
+	public void before(Scenario scenario) {
+		this.scenario = scenario;
+	}
+	
+	@Given("^User makes GET request to ([^\"]*)$\")
+	public void getCallToUrl(String string) throws URISyntaxException {
+		RestAssured.baseURI = BASE_URL;
+		RequestSpecification requestSpecification = RestAssured.given();
+		response = requestSpecification.when().get(new URI(string));
+	}
+	
+	@Then("Response is (\\d+) and response body contains all the users$")
+	public void reponseIsStatusCode(String statusCode) {
+		int actualReponseCode =  response.then().extract().statusCode();
+		Assert.assertEquals(statusCode, actualReponseCode);
+	}
+
+}

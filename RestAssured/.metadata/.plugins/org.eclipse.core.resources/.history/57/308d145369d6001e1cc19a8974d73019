@@ -1,0 +1,10 @@
+package runner;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(features = { "src/testresources/featureFiles" }, glue = {
+		"step.definitions" }, monochrome = true, dryRun = false, plugin = {
+				"json:build/cucumber-reports/cucumber.json" })
+
+public class TestRunner {
+
+}

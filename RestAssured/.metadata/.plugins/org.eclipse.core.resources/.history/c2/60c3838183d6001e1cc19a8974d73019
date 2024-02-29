@@ -1,0 +1,21 @@
+Feature: GET - All Users
+
+
+ @getusers
+ Scenario Outline: Get all the Users with expected response body
+    Given User makes GET request to <endpoint>
+	Then Response is <statuscode>
+ 
+	Examples: 
+		| endpoint | statuscode |
+		| /users   |  200       |
+  
+ 
+ @getusers
+ Scenario Outline: Check User able to get all the Users with Valid URL and invalid endpoint
+    Given User makes GET request to <endpoint>
+	Then Response is <statuscode>
+ 
+	Examples: 
+		| endpoint   | statuscode |
+		| /invalid   | 404        |

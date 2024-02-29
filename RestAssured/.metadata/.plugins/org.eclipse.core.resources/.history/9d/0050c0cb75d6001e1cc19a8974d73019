@@ -1,0 +1,14 @@
+Feature: GET - All Users
+
+
+ @getusers
+ Scenario Outline: Get all the Users with expected response body
+    Given User makes GET Request to <endpoint>
+#    When User sends GET request 
+	Then Response is <statuscode> and response body contains all the users
+ 
+	Examples: 
+		| endpoint | statuscode |
+		| "/users"   |  200       |
+  
+  

@@ -1,0 +1,12 @@
+package stepDefinitions;
+
+import io.cucumber.java.en.*;
+
+public class restApiGET {
+	
+	@Given("User makes GET Request to <endpoint>")
+	public void getCallToUrl() {
+		
+	}
+
+}

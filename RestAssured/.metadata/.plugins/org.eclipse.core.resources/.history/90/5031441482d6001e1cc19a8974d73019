@@ -1,0 +1,11 @@
+package utils;
+
+import io.restassured.RestAssured;
+import io.restassured.specification.RequestSpecification;
+
+public class restAPIHelper {
+	
+	public static RequestSpecification getBasicAuth() {
+		return RestAssured.given().auth().basic("Numpy@gmail.com", "userAPI");
+	}
+}

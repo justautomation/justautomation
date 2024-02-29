@@ -1,0 +1,14 @@
+Feature: GET - All Users
+
+
+ @array
+ Scenario Outline: Get all the Users with expected response body
+    Given User creates GET Request for the API endpoint to get all Users
+    When User sends GET request 
+	Then Response status code should be 200 OK and response body contains all the users
+ 
+	Examples: 
+		| Sheetname | RowNumber |
+		| Sheet1    |         4 |
+  
+  

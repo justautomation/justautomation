@@ -1,0 +1,14 @@
+package restassuredTests;
+
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+import org.testng.annotations.Test;
+
+public class Demo1_GET_Request {
+
+	@Test
+	public void getWeatherDetails() {
+		given()
+	}
+
+}
